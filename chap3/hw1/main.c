@@ -32,7 +32,8 @@ int main()
 void linefun(char lines[][MAXLINE], int a) 
 {
     char temp[MAXLINE];
-    int i,j;
+    int i;
+	int j;
     
     for (i = 0; i < a - 1; i++) 
     {
