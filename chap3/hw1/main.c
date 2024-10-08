@@ -1,53 +1,56 @@
 #include <stdio.h>
 #include <string.h>
 #include "copy.h"
-#define linenum 5
 
-char lines[linenum][MAXLINE];
-void linefun(char lines[][MAXLINE], int a);
+
+char line[MAXLINE];
+char jang[5][MAXLINE];
+char temp[MAXLINE];
+
 
 int main() 
 {
-    int i,j;
     
-    for (i = 0; i < linenum; i++) 
+    int i = 0;
+    
+    int j;
+
+    while (i < 5 && gets(line) != NULL) 
     {
-        scanf("%s", lines[i]);
+        copy(line, jang[i]);
+        
+        
+         i++;
     }
 
 
-    linefun(lines, linenum);
-    
-    
-    for (i = 0; i < linenum; i++) 
+    for (i = 0;i < 5; i++) 
     {
-        printf("%s\n", lines[i]);
+        for (j = i +1; j < 5;j++) 
+        {
+            if (strlen(jang[i]) < strlen(jang[j]) ) 
+            {
+                copy(jang[i], temp);
+                copy(jang[j], jang[i]);
+                copy(temp, jang[j]);
+            }
+            
+        }
+        
+    }
+
+
+    for (i = 0; i < 5;i++) 
+    {
+        printf("%s\n", jang[i]);
     }
 
     return 0;
     
     
+    
+    
 }
 
-void linefun(char lines[][MAXLINE], int a) 
-{
-    char temp[MAXLINE];
-    int i;
-	int j;
-    
-    for (i = 0; i < a - 1; i++) 
-    {
-        for (j = i + 1; j < a; j++) 
-        {
-            if (strlen(lines[i]) < strlen(lines[j])) 
-            {
-                copy(lines[i], temp);
-                copy(lines[j], lines[i]);
-                copy(temp, lines[j]);
-            }
-            
-        }
-    }
-    
-    
-}
+
+
